@@ -60,10 +60,12 @@ with col2:
     tgt_lang_label = st.selectbox("Target Language", list(TARGET_OPTIONS.keys()))
 
 if st.button("Translate") and uploaded_pdf:
+
     src_lang = LANG_OPTIONS[src_lang_label]
     tgt_lang = TARGET_OPTIONS[tgt_lang_label]
     with st.spinner("Translating..."):
         result_bytes = translate_pdf(uploaded_pdf.read(), src_lang, tgt_lang)
+
     st.download_button(
         "Download translated PDF",
         result_bytes,

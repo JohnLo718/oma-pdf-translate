@@ -10,7 +10,7 @@ This project provides a simple Streamlit application that translates the text in
 
 Translation quality depends on the translator backend. The included example uses `googletrans` for demonstration. For higher quality consider integrating the DeepL or OpenAI API.
 
-## Local Setup
+
 1. Install dependencies (Python 3.9+ recommended):
    ```bash
    pip install -r requirements.txt
@@ -25,7 +25,7 @@ Build and run the app using Docker:
 ```bash
 docker build -t pdf-translate .
 docker run -p 8080:8080 pdf-translate
-```
+
 
 ## Google Cloud Run Deployment
 1. Build the container image and push to Google Container Registry (requires gcloud):

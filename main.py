@@ -19,13 +19,6 @@ def translate_pdf(data: bytes, src_lang: str, tgt_lang: str) -> bytes:
     """Translate PDF text while trying to preserve layout."""
     doc = fitz.open(stream=data, filetype="pdf")
     translator = Translator()
-    # Ensure compatibility across googletrans versions
-    if hasattr(translator, "raise_exception") and not hasattr(translator, "raise_Exception"):
-        translator.raise_Exception = translator.raise_exception
-    if hasattr(translator, "raise_Exception"):
-        translator.raise_Exception = True
-    elif hasattr(translator, "raise_exception"):
-        translator.raise_exception = True
 
     for page in doc:
         text_page = page.get_text("dict")
@@ -56,7 +49,7 @@ TARGET_OPTIONS = {
     "English": "en",
 }
 
-st.set_page_config(page_title="PDF Translation App")
+
 st.title("PDF Translation App")
 
 uploaded_pdf = st.file_uploader("Upload PDF", type="pdf")
@@ -68,15 +61,12 @@ with col2:
     tgt_lang_label = st.selectbox("Target Language", list(TARGET_OPTIONS.keys()))
 
 if st.button("Translate") and uploaded_pdf:
-    st.warning(
-        "Layout may not be perfectly preserved in the translated PDF.",
-        icon="⚠️",
-    )
+
     src_lang = LANG_OPTIONS[src_lang_label]
     tgt_lang = TARGET_OPTIONS[tgt_lang_label]
     with st.spinner("Translating..."):
         result_bytes = translate_pdf(uploaded_pdf.read(), src_lang, tgt_lang)
-    st.success("Translation complete.")
+
     st.download_button(
         "Download translated PDF",
         result_bytes,

@@ -11,7 +11,6 @@ This project provides a simple Streamlit application that translates the text in
 Translation quality depends on the translator backend. The included example uses `googletrans` for demonstration. For higher quality consider integrating the DeepL or OpenAI API.
 
 
-## Setup
 1. Install dependencies (Python 3.9+ recommended):
    ```bash
    pip install -r requirements.txt

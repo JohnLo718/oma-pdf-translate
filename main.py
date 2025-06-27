@@ -49,6 +49,7 @@ TARGET_OPTIONS = {
     "English": "en",
 }
 
+
 st.title("PDF Translation App")
 
 uploaded_pdf = st.file_uploader("Upload PDF", type="pdf")

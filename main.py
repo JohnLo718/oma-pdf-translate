@@ -19,6 +19,13 @@ def translate_pdf(data: bytes, src_lang: str, tgt_lang: str) -> bytes:
     """Translate PDF text while trying to preserve layout."""
     doc = fitz.open(stream=data, filetype="pdf")
     translator = Translator()
+    # Ensure compatibility across googletrans versions
+    if hasattr(translator, "raise_exception") and not hasattr(translator, "raise_Exception"):
+        translator.raise_Exception = translator.raise_exception
+    if hasattr(translator, "raise_Exception"):
+        translator.raise_Exception = True
+    elif hasattr(translator, "raise_exception"):
+        translator.raise_exception = True
 
     for page in doc:
         text_page = page.get_text("dict")
